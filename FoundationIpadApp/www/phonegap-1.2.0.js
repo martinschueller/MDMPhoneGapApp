@@ -9,7 +9,7 @@
  * 
  */
 
-if (typeof PhoneGap === "undefined") {
+if (typeof PhoneGap === "undefined")  {
 
 if (typeof(DeviceInfo) !== 'object'){
     DeviceInfo = {};
