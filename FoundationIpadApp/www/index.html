@@ -7,6 +7,8 @@
         <style type="text/css" media="screen">@import "theme.min.css";</style>
         <script src="jquery.1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="jqtouch.min.js" type="application/x-javascript" charset="utf-8"></script>
+        <script src="http://jquery-jsonp.googlecode.com/files/jquery.jsonp-2.1.4.min.js"></script>
+
         
         <script type="text/javascript" charset="utf-8">
             var page = 0;
@@ -121,6 +123,43 @@
                }
                })*/
               });
+            
+            
+            
+            $(document).ready(function(){
+                              
+                              $.jsonp({
+                                      
+                                      url: 'http://twitter.com/status/user_timeline/_ms.json?count=20',
+                                      
+                                      callbackParameter: 'callback',
+                                      
+                                      success: function(data, status) {
+                                      
+                                      //$('#your-tweets').append('<li>The feed loads fine');
+                                      
+                                      $.each(data, function(i,item){
+                                             
+                                             var tweet = item.text;
+                                             
+                                             $('#your-tweets').append('<li>'+tweet);
+                                             
+                                             });
+                                      
+                                      },
+                                      
+                                      error: function(){
+                                      
+                                      $('#your-tweets').append('<li>There was an error loading the feed');
+                                      
+                                      }
+                                      
+                                      });
+                              
+                              });
+            
+            
+            
             </script>
         <style type="text/css" media="screen">
             body {
@@ -197,6 +236,7 @@
                 <video width="649" height="368" controls>
                     <source src="mashup.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
                         </video>
+                <ul id="your-tweets"></ul>
             </div>
         </div>
         <div class="touch" style="background-image: url(pages/p2.jpg); background-repeat: no-repeat; background-attachment: fixed; width:768px; height:1024px;">
@@ -217,5 +257,6 @@
         </div>
         
         
+
     </body>
 </html>
